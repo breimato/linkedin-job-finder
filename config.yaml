@@ -1,0 +1,50 @@
+search:
+  keywords:
+    - "python django"
+    - "java spring boot"
+    - "backend developer python"
+    - "backend developer java"
+  location: "Spain"
+  distance_miles: 2500
+  is_remote: true
+  job_type: "fulltime"
+  results_wanted: 25
+  hours_old: 48
+  salary_min: 0
+  salary_max: 0
+  exclude_keywords: []
+  require_keywords_in_title: []
+
+notification:
+  telegram:
+    enabled: true
+    max_jobs_per_message: 5
+    include_description_preview: true
+    description_chars: 300
+
+auto_apply:
+  enabled: false
+  # !! ADVERTENCIA DE RIESGO !!
+  # El auto-apply viola la Sección 8.2 de los Términos de Servicio de LinkedIn.
+  # Tu cuenta puede ser restringida o baneada permanentemente.
+  # Úsalo bajo tu propio riesgo. Solo funciona con trabajos de LinkedIn Easy Apply.
+  risk_acknowledged: false
+  mode: "human_review" # human_review | fully_automatic
+  approval_timeout_hours: 12
+  linkedin:
+    headless: true
+    slow_mo_ms: 150
+    max_applications_per_day: 10
+  cv:
+    pdf_path: "cv/resume.pdf"
+    answers:
+      years_experience: 3
+      phone_number: "+34 600 000 000"
+      work_authorization: "Yes"
+      require_sponsorship: "No"
+
+logging:
+  level: "INFO"
+  file: "logs/jobhunter.log"
+  rotation: "10 MB"
+  retention: "30 days"
