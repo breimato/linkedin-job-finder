@@ -1,9 +1,16 @@
 search:
   keywords:
-    - "python django"
-    - "java spring boot"
-    - "backend developer python"
-    - "backend developer java"
+    - "Python Django"
+    - "Django developer"
+    - "Java Spring Boot"
+    - "Java Engineer"
+    - "Python Engineer"
+    - "Spring Boot developer"
+    - "Backend developer Python"
+    - "Backend developer Java"
+    - "Software engineer Django"
+    - "Software engineer Spring Boot"
+    - "Hexagonal"
   location: "Spain"
   distance_miles: 2500
   is_remote: true

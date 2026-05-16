@@ -51,7 +51,7 @@ def _scrape(settings: Settings) -> pd.DataFrame:
     search = settings.search
     kwargs: dict = dict(
         site_name=["linkedin"],
-        search_term=" ".join(search.keywords),
+        search_term=" OR ".join(search.keywords),
         location=search.location,
         distance=search.distance_miles,
         job_type=search.job_type,
