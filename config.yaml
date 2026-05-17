@@ -1,26 +1,27 @@
 search:
   keywords:
     - "Python Django"
-    - "Django developer"
     - "Java Spring Boot"
     - "Java Engineer"
     - "Python Engineer"
-    - "Spring Boot developer"
-    - "Backend developer Python"
-    - "Backend developer Java"
-    - "Software engineer Django"
-    - "Software engineer Spring Boot"
-    - "Hexagonal"
+    - "Spring Boot"
+    - "Java Hexagonal"
   location: "Spain"
   distance_miles: 2500
   is_remote: true
   job_type: "fulltime"
   results_wanted: 25
-  hours_old: 48
+  hours_old: 24
   salary_min: 0
   salary_max: 0
   exclude_keywords: []
-  require_keywords_in_title: []
+  require_keywords_in_title:
+    - "python"
+    - "django"
+    - "java"
+    - "spring"
+    - "backend"
+    - "hexagonal"
 
 notification:
   telegram:

@@ -75,8 +75,9 @@ def _apply_filters(df: pd.DataFrame, settings: Settings) -> pd.DataFrame:
         desc_match = df["description"].str.contains(pattern, case=False, na=False)
         df = df[~(title_match | desc_match)]
 
-    for kw in search.require_keywords_in_title:
-        df = df[df["title"].str.contains(kw, case=False, na=False)]
+    if search.require_keywords_in_title:
+        pattern = "|".join(re.escape(kw) for kw in search.require_keywords_in_title)
+        df = df[df["title"].str.contains(pattern, case=False, na=False)]
 
     if search.salary_min > 0 and "min_amount" in df.columns:
         has_salary = df["min_amount"].notna() | df["max_amount"].notna()
