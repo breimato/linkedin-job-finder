@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(schtasks /Query /TN \"JobHunter\\\\Monitor\" /FO LIST 2>&1)",
+      "PowerShell(wscript.exe \"C:\\\\Users\\\\Breixo\\\\Desktop\\\\Escritorio\\\\Proyectos\\\\Linkedin Search\\\\scripts\\\\run_monitor_hidden.vbs\")",
+      "Bash(defuddle parse *)"
+    ]
+  }
+}
