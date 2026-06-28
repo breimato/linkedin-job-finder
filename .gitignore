@@ -19,6 +19,9 @@ pip-wheel-metadata/
 .env.*
 !.env.example
 
+# Configuración personal (copiar desde config.example.yaml)
+config.yaml
+
 # ── Datos locales del proyecto ──────────────────────────────────────────────
 data/jobs.db
 data/browser_state.json
@@ -30,7 +33,11 @@ logs/
 *.log
 
 # ── CV y documentos personales ──────────────────────────────────────────────
-cv/
+cv/*
+!cv/.gitkeep
+
+# ── Scripts locales de Windows (tareas programadas) ───────────────────────────
+scripts/
 
 # ── IDEs y editores ───────────────────────────────────────────────────────────
 .idea/
