@@ -8,8 +8,8 @@ El proyecto tiene dos piezas principales que trabajan juntas:
 
 | Componente | Qué hace | Cuándo se ejecuta |
 |---|---|---|
-| **Monitor** (`main.py`) | Busca ofertas en LinkedIn, filtra las nuevas y las envía por Telegram | Cada 20 min (tarea programada) o manualmente |
-| **Bot de aprobación** (`src/approval_bot/bot.py`) | Escucha Telegram y permite aprobar/rechazar candidaturas Easy Apply | Al iniciar sesión en Windows (tarea programada) o manualmente |
+| **Monitor** (`main.py`) | Busca ofertas en LinkedIn, filtra las nuevas y las envía por Telegram | Manualmente o con un programador de tareas |
+| **Bot de aprobación** (`src/approval_bot/bot.py`) | Escucha Telegram y permite aprobar/rechazar candidaturas Easy Apply | Manualmente, debe estar siempre en ejecución |
 
 ### Flujo completo
 
@@ -32,7 +32,6 @@ LinkedIn (jobspy) → Filtros → SQLite → Telegram (notificación)
 ## Requisitos
 
 - **Python 3.11+** (recomendado)
-- **Windows** (los scripts de automatización usan el Programador de tareas)
 - Cuenta de **Telegram** y un bot creado con [@BotFather](https://t.me/BotFather)
 - Cuenta de **LinkedIn** (solo necesaria si activas el auto-apply)
 
@@ -114,36 +113,7 @@ python main.py
 
 Si hay ofertas nuevas, llegarán a tu Telegram. Los logs se guardan en `logs/jobhunter.log`.
 
-## Automatizar el monitor (Windows)
-
-Los scripts en `scripts/` están pensados para ejecutarse en segundo plano con el Programador de tareas de Windows.
-
-### Ejecución manual del monitor en background
-
-```powershell
-.\scripts\run_monitor.bat
-```
-
-O sin ventana visible:
-
-```powershell
-wscript scripts\run_monitor_hidden.vbs
-```
-
-### Registrar tareas programadas
-
-> Antes de ejecutar `install_task.bat`, edita las rutas absolutas dentro de los `.bat` y `.vbs` para que apunten a tu carpeta del proyecto (actualmente contienen la ruta del autor).
-
-```powershell
-.\scripts\install_task.bat
-```
-
-Esto crea dos tareas:
-
-| Tarea | Frecuencia | Script |
-|---|---|---|
-| `JobHunter\Monitor` | Cada 20 minutos | `scripts/run_monitor.bat` |
-| `JobHunter\ApprovalBot` | Al iniciar sesión | `scripts/run_approval_bot.bat` |
+Para automatizar el escaneo, configura un programador de tareas del sistema (cron en Linux/macOS, Programador de tareas en Windows) que ejecute `python main.py` periódicamente.
 
 ## Bot de aprobación de LinkedIn
 
@@ -154,12 +124,6 @@ El bot de Telegram es un proceso **persistente** (no se lanza y termina como el 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 python -m src.approval_bot.bot
-```
-
-O con el script batch:
-
-```powershell
-.\scripts\run_approval_bot.bat
 ```
 
 ### Comandos disponibles
@@ -248,12 +212,6 @@ Linkedin Search/
 │       ├── apply_bot.py         # Orquestador de candidatura
 │       ├── form_filler.py       # Relleno de formularios Easy Apply
 │       └── session_manager.py   # Gestión de sesión Playwright
-└── scripts/
-    ├── run_monitor.bat          # Monitor en background
-    ├── run_monitor_hidden.vbs   # Monitor sin ventana
-    ├── run_approval_bot.bat     # Bot de aprobación
-    ├── install_task.bat         # Registra tareas en Windows
-    └── lookup_job.py            # Utilidad para consultar la BD
 ```
 
 ## Solución de problemas
@@ -271,7 +229,7 @@ Linkedin Search/
 
 ### El bot de aprobación no responde
 
-- Verifica que el proceso está corriendo (`logs/bot.log`).
+- Verifica que el proceso está corriendo.
 - Solo responde al chat ID configurado en `.env`.
 
 ### Falla el auto-apply
@@ -280,10 +238,6 @@ Linkedin Search/
 - Comprueba que `cv/resume.pdf` existe.
 - Algunos formularios Easy Apply tienen campos personalizados que `form_filler.py` no reconoce (devuelve `unknown` y aborta).
 - Revisa el límite diario en `max_applications_per_day`.
-
-### Rutas en los scripts de Windows
-
-Los `.bat` y `.vbs` contienen rutas absolutas. Si clonas el repo en otra carpeta, actualízalas antes de usar `install_task.bat`.
 
 ## Licencia
 
