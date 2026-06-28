@@ -1,8 +1,66 @@
+# ── Python ──────────────────────────────────────────────────────────────────
 .venv/
+venv/
+env/
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+pip-wheel-metadata/
+
+# ── Variables de entorno y secretos ─────────────────────────────────────────
 .env
+.env.*
+!.env.example
+
+# ── Datos locales del proyecto ──────────────────────────────────────────────
 data/jobs.db
 data/browser_state.json
+data/*.db
+data/*.sqlite3
+
+# ── Logs ────────────────────────────────────────────────────────────────────
 logs/
+*.log
+
+# ── CV y documentos personales ──────────────────────────────────────────────
 cv/
+
+# ── IDEs y editores ───────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Herramientas de IA / asistentes locales ───────────────────────────────────
+.claude/
+.cursor/
+
+# ── Sistema operativo ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Testing y calidad de código ───────────────────────────────────────────────
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ── Playwright ────────────────────────────────────────────────────────────────
+playwright-report/
+test-results/
+.playwright/
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
